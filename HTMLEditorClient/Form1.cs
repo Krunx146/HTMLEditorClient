@@ -146,25 +146,11 @@ namespace HTMLEditorClient
                 executeMarkup();
             }
         }
-        private void saveFileAs()
-        {
-            SaveFileDialog saveFile = new SaveFileDialog();
-            saveFile.Filter = "Html file|*.html|Text document|*.txt";
-            saveFile.Title = "Save file";
-            saveFile.ShowDialog();
-            if (saveFile.FileName != "")
-            {
-                System.IO.File.WriteAllText(saveFile.FileName,inputCode.Text);
-            }
-            filePath = saveFile.FileName;
-            this.Text = "HTML Editor - " + filePath; 
-        }
-        //OPEN FILE
-        private void openToolStripMenuItem_Click(object sender, EventArgs e)
+        private void openFile()
         {
             if (!string.IsNullOrWhiteSpace(inputCode.Text))
             {
-                DialogResult dialogResult = MessageBox.Show("Are you sure you want to load new file? Current code will be erased.","Warning", MessageBoxButtons.YesNo);
+                DialogResult dialogResult = MessageBox.Show("Are you sure you want to load new file? Current code will be erased.", "Warning", MessageBoxButtons.YesNo);
                 if (dialogResult == DialogResult.No) return;
             }
             Stream myStream = null;
@@ -194,10 +180,54 @@ namespace HTMLEditorClient
             inputCode.SelectAll();
             inputCode.SelectionColor = Color.Black;
             inputCode.DeselectAll();
-            if(MarkWords == true)
+            if (MarkWords == true)
             {
                 executeMarkup();
             }
+        }
+        private void saveFile()
+        {
+            if (filePath == null)
+            {
+                saveFileAs();
+            }
+            else
+            {
+                System.IO.File.WriteAllText(filePath, inputCode.Text);
+            }
+            this.Text = "HTML Editor - " + filePath;
+        }
+        private void saveFileAs()
+        {
+            SaveFileDialog saveFile = new SaveFileDialog();
+            saveFile.Filter = "Html file|*.html|Text document|*.txt";
+            saveFile.Title = "Save file";
+            saveFile.ShowDialog();
+            if (saveFile.FileName != "")
+            {
+                System.IO.File.WriteAllText(saveFile.FileName,inputCode.Text);
+            }
+            filePath = saveFile.FileName;
+            this.Text = "HTML Editor - " + filePath; 
+        }
+        private void copyText()
+        {
+            if (inputCode.SelectedText.Any())
+            {
+                inputCode.Copy();
+            }
+        }
+        private void pasteText()
+        {
+            if (Clipboard.GetDataObject().GetDataPresent(DataFormats.Text) == true)
+            {
+                inputCode.Paste();
+            }
+        }
+        //OPEN FILE
+        private void openToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            openFile();
         }
 
         private void menuExit_Click(object sender, EventArgs e)
@@ -212,31 +242,58 @@ namespace HTMLEditorClient
 
         private void menuSave_Click(object sender, EventArgs e)
         {
-            if(filePath == null)
-            {
-                saveFileAs();
-            }
-            else
-            {
-                System.IO.File.WriteAllText(filePath, inputCode.Text);
-            }
-            this.Text = "HTML Editor - " + filePath;
+            saveFile();
         }
 
         private void inputCode_KeyDown(object sender, KeyEventArgs e)
         {
             if (e.Control && e.KeyCode == Keys.S)
             {
-                if (filePath == null)
-                {
-                    saveFileAs();
-                }
-                else
-                {
-                    System.IO.File.WriteAllText(filePath, inputCode.Text);
-                }
-                this.Text = "HTML Editor - " + filePath;
+                saveFile();
                 e.SuppressKeyPress = true;
+            }
+        }
+
+        private void toolOpen_Click(object sender, EventArgs e)
+        {
+            openFile();
+        }
+
+        private void toolSave_Click(object sender, EventArgs e)
+        {
+            saveFile();
+        }
+
+        private void toolSaveAs_Click(object sender, EventArgs e)
+        {
+            saveFileAs();
+        }
+
+        private void menuCopy_Click(object sender, EventArgs e)
+        {
+            copyText();
+        }
+
+        private void menuPaste_Click(object sender, EventArgs e)
+        {
+            pasteText();
+        }
+
+        private void contextCopy_Click(object sender, EventArgs e)
+        {
+            copyText();
+        }
+
+        private void contextPaste_Click(object sender, EventArgs e)
+        {
+            pasteText();
+        }
+
+        private void inputCode_MouseUp(object sender, MouseEventArgs e)
+        {
+            if(e.Button == System.Windows.Forms.MouseButtons.Right)
+            {
+                contextMenuStrip1.Show(Cursor.Position);
             }
         }
     }
