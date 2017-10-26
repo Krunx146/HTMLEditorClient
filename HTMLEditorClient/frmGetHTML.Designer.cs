@@ -50,6 +50,7 @@
             this.inputHostnameGet.Size = new System.Drawing.Size(356, 20);
             this.inputHostnameGet.TabIndex = 1;
             this.inputHostnameGet.Text = "http://google.com";
+            this.inputHostnameGet.KeyDown += new System.Windows.Forms.KeyEventHandler(this.inputHostnameGet_KeyDown);
             // 
             // btnGetHTMLFromHostname
             // 

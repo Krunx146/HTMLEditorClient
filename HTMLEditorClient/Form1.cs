@@ -43,8 +43,70 @@ namespace HTMLEditorClient
         }
         private void executeMarkup()
         {
-            foreach (string s in MarkupListHTML) CheckWord(s, Color.Blue, 0);
-            foreach (string s in MarkupListCSS) CheckWord(s, Color.Green, 0);
+            foreach (string s in MarkupListHTML) CheckAllText(s, Color.Blue, 0);
+            foreach (string s in MarkupListCSS) CheckAllText(s, Color.Green, 0);
+        }
+        private void executeMarkupOnSingleWord()
+        {
+            foreach (string s in MarkupListHTML)
+            {
+                int length = s.Length;
+                int selectionEnd = inputCode.SelectionStart;
+                int selectionStart = 0;
+                if (selectionEnd - length <= 0) return;
+                else
+                {
+                    selectionStart = selectionEnd - length;
+                    string comp = inputCode.Text.Substring(selectionStart, length);
+                    if(comp == s)
+                    {
+                        this.inputCode.Select(selectionStart, length);
+                        this.inputCode.SelectionColor = Color.Blue;
+                        this.inputCode.Select(selectionEnd, 0);
+                        this.inputCode.SelectionColor = Color.Black;
+                    }
+                }
+                
+            }
+            foreach (string s in MarkupListCSS)
+            {
+                int length = s.Length;
+                int selectionEnd = inputCode.SelectionStart;
+                int selectionStart = 0;
+                if (selectionEnd - length <= 0) return;
+                else
+                {
+                    selectionStart = selectionEnd - length;
+                    string comp = inputCode.Text.Substring(selectionStart, length);
+                    if (comp == s)
+                    {
+                        this.inputCode.Select(selectionStart, length);
+                        this.inputCode.SelectionColor = Color.Green;
+                        this.inputCode.Select(selectionEnd, 0);
+                        this.inputCode.SelectionColor = Color.Black;
+                    }
+                }
+            }
+            /*
+            string part;
+            int selectionEnd = inputCode.SelectionStart;
+            if (selectionEnd <= 0) return;
+            int selectionStart = 0;
+            if (selectionEnd - 20 < 0)
+            {
+                selectionStart = selectionEnd - inputCode.Text.Length;
+                part = inputCode.Text.Substring(selectionStart, selectionEnd);
+
+            }
+            else
+            {
+                selectionStart = selectionEnd - 20;
+                part = inputCode.Text.Substring(selectionStart, 20);
+            }
+            
+            foreach (string s in MarkupListHTML) CheckString(s, Color.Blue, selectionStart, selectionEnd, part);
+            foreach (string s in MarkupListCSS) CheckString(s, Color.Green, selectionStart, selectionEnd, part);
+            */
         }
 
         private void inputCode_TextChanged(object sender, EventArgs e)
@@ -53,11 +115,11 @@ namespace HTMLEditorClient
             inputCode.ForeColor = Color.Black;
             if (MarkWords == true)
             {
-                executeMarkup();
+                executeMarkupOnSingleWord();
             }
             this.Text = "HTML Editor - " + filePath + "*";
         }
-        private void CheckWord(string word, Color color, int startIndex)
+        private void CheckAllText(string word, Color color, int startIndex)
         {
             if (this.inputCode.Text.Contains(word))
             {
@@ -70,6 +132,17 @@ namespace HTMLEditorClient
                     this.inputCode.Select(selectStart, 0);
                     this.inputCode.SelectionColor = Color.Black;
                 }
+            }
+        }
+        private void CheckString(string word, Color color, int startIndex, int endIndex, string text)
+        {
+            int selectStart = this.inputCode.SelectionStart;
+            if (text.Contains(word))
+            {
+                this.inputCode.Select(text.IndexOf(word, endIndex-startIndex), word.Length);
+                this.inputCode.SelectionColor = color;
+                this.inputCode.Select(selectStart, 0);
+                this.inputCode.SelectionColor = Color.Black;
             }
         }
 
@@ -223,6 +296,7 @@ namespace HTMLEditorClient
             {
                 inputCode.Paste();
             }
+            executeMarkup();
         }
         //OPEN FILE
         private void openToolStripMenuItem_Click(object sender, EventArgs e)

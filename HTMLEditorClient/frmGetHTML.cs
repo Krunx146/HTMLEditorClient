@@ -21,8 +21,7 @@ namespace HTMLEditorClient
         {
             InitializeComponent();
         }
-
-        private void btnGetHTMLFromHostname_Click(object sender, EventArgs e)
+        private void getHTMLfromHostname()
         {
             string urlAddress = inputHostnameGet.Text;
             try
@@ -57,13 +56,26 @@ namespace HTMLEditorClient
                 {
                     readStream = new StreamReader(receiveStream, Encoding.GetEncoding(response.CharacterSet));
                 }
-
                 string data = readStream.ReadToEnd();
                 response.Close();
                 readStream.Close();
                 parent.AppendText(data);
                 Cursor.Current = Cursors.Arrow;
                 this.Close();
+            }
+        }
+        private void btnGetHTMLFromHostname_Click(object sender, EventArgs e)
+        {
+            getHTMLfromHostname();
+        }
+
+        private void inputHostnameGet_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.KeyCode == Keys.Enter)
+            {
+                getHTMLfromHostname();
+                e.Handled = true;
+                e.SuppressKeyPress = true;
             }
         }
     }
