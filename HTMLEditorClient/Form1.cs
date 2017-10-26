@@ -87,26 +87,6 @@ namespace HTMLEditorClient
                     }
                 }
             }
-            /*
-            string part;
-            int selectionEnd = inputCode.SelectionStart;
-            if (selectionEnd <= 0) return;
-            int selectionStart = 0;
-            if (selectionEnd - 20 < 0)
-            {
-                selectionStart = selectionEnd - inputCode.Text.Length;
-                part = inputCode.Text.Substring(selectionStart, selectionEnd);
-
-            }
-            else
-            {
-                selectionStart = selectionEnd - 20;
-                part = inputCode.Text.Substring(selectionStart, 20);
-            }
-            
-            foreach (string s in MarkupListHTML) CheckString(s, Color.Blue, selectionStart, selectionEnd, part);
-            foreach (string s in MarkupListCSS) CheckString(s, Color.Green, selectionStart, selectionEnd, part);
-            */
         }
 
         private void inputCode_TextChanged(object sender, EventArgs e)
@@ -321,10 +301,28 @@ namespace HTMLEditorClient
 
         private void inputCode_KeyDown(object sender, KeyEventArgs e)
         {
-            if (e.Control && e.KeyCode == Keys.S)
+            if (e.Control)
             {
-                saveFile();
-                e.SuppressKeyPress = true;
+                if (e.KeyCode == Keys.O)
+                {
+                    openFile();
+                    e.SuppressKeyPress = true;
+                }
+                if (e.KeyCode == Keys.S)
+                {
+                    saveFile();
+                    e.SuppressKeyPress = true;
+                }
+                if (e.KeyCode == Keys.V)
+                {
+                    pasteText();
+                    e.SuppressKeyPress = true;
+                }
+                if (e.KeyCode == Keys.C)
+                {
+                    copyText();
+                    e.SuppressKeyPress = true;
+                }
             }
         }
 
