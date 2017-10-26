@@ -247,6 +247,7 @@
             this.inputCode.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
+            this.inputCode.ContextMenuStrip = this.contextMenuStrip1;
             this.inputCode.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
             this.inputCode.Location = new System.Drawing.Point(0, 54);
             this.inputCode.Name = "inputCode";
@@ -256,7 +257,6 @@
             this.inputCode.Click += new System.EventHandler(this.inputCode_Click);
             this.inputCode.TextChanged += new System.EventHandler(this.inputCode_TextChanged);
             this.inputCode.KeyDown += new System.Windows.Forms.KeyEventHandler(this.inputCode_KeyDown);
-            this.inputCode.MouseUp += new System.Windows.Forms.MouseEventHandler(this.inputCode_MouseUp);
             // 
             // outputLineNumber
             // 
@@ -345,6 +345,7 @@
             this.toolGetFromServer.Size = new System.Drawing.Size(28, 28);
             this.toolGetFromServer.Text = "toolStripButton4";
             this.toolGetFromServer.ToolTipText = "Get HTML from server";
+            this.toolGetFromServer.Click += new System.EventHandler(this.toolGetFromServer_Click);
             // 
             // toolSendToServer
             // 

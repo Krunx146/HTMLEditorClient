@@ -288,13 +288,15 @@ namespace HTMLEditorClient
         {
             pasteText();
         }
-
-        private void inputCode_MouseUp(object sender, MouseEventArgs e)
+        public void AppendText(string data)
         {
-            if(e.Button == System.Windows.Forms.MouseButtons.Right)
-            {
-                contextMenuStrip1.Show(Cursor.Position);
-            }
+            inputCode.Text = data;
+        }
+        private void toolGetFromServer_Click(object sender, EventArgs e)
+        {
+            frmGetHTML tempForm = new frmGetHTML();
+            tempForm.parent = this;
+            tempForm.Show();
         }
     }
 }
