@@ -291,6 +291,13 @@ namespace HTMLEditorClient
         public void AppendText(string data)
         {
             inputCode.Text = data;
+            inputCode.SelectAll();
+            inputCode.SelectionColor = Color.Black;
+            inputCode.DeselectAll();
+            if (MarkWords == true)
+            {
+                executeMarkup();
+            }
         }
         private void toolGetFromServer_Click(object sender, EventArgs e)
         {
