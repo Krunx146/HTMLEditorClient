@@ -343,7 +343,7 @@
             this.toolGetFromServer.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.toolGetFromServer.Name = "toolGetFromServer";
             this.toolGetFromServer.Size = new System.Drawing.Size(28, 28);
-            this.toolGetFromServer.Text = "toolStripButton4";
+            this.toolGetFromServer.Text = "f";
             this.toolGetFromServer.ToolTipText = "Get HTML from server";
             this.toolGetFromServer.Click += new System.EventHandler(this.toolGetFromServer_Click);
             // 

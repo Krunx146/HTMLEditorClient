@@ -15,6 +15,8 @@ namespace HTMLEditorClient
     public partial class frmGetHTML : Form
     {
         public frmMain parent;
+        public HttpWebRequest request;
+        public HttpWebResponse response;
         public frmGetHTML()
         {
             InitializeComponent();
@@ -23,10 +25,24 @@ namespace HTMLEditorClient
         private void btnGetHTMLFromHostname_Click(object sender, EventArgs e)
         {
             string urlAddress = inputHostnameGet.Text;
-
-            HttpWebRequest request = (HttpWebRequest)WebRequest.Create(urlAddress);
-            HttpWebResponse response = (HttpWebResponse)request.GetResponse();
-
+            try
+            {
+                request = (HttpWebRequest)WebRequest.Create(urlAddress);
+            }
+            catch
+            {
+                MessageBox.Show("Cannot reach the host at " + urlAddress);
+                return;
+            }
+            try
+            {
+                response = (HttpWebResponse)request.GetResponse();
+            }
+            catch
+            {
+                MessageBox.Show("No response from " + urlAddress);
+                return;
+            }
             if (response.StatusCode == HttpStatusCode.OK)
             {
                 Stream receiveStream = response.GetResponseStream();
