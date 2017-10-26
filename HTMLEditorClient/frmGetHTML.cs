@@ -43,6 +43,7 @@ namespace HTMLEditorClient
                 MessageBox.Show("No response from " + urlAddress);
                 return;
             }
+            Cursor.Current = Cursors.WaitCursor;
             if (response.StatusCode == HttpStatusCode.OK)
             {
                 Stream receiveStream = response.GetResponseStream();
@@ -61,6 +62,7 @@ namespace HTMLEditorClient
                 response.Close();
                 readStream.Close();
                 parent.AppendText(data);
+                Cursor.Current = Cursors.Arrow;
                 this.Close();
             }
         }
