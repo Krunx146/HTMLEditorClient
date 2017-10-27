@@ -377,5 +377,11 @@ namespace HTMLEditorClient
             tempForm.parent = this;
             tempForm.Show();
         }
+
+        private void toolWebPreview_Click(object sender, EventArgs e)
+        {
+            frmWebPreview tempForm = new frmWebPreview(inputCode.Text);
+            tempForm.Show();
+        }
     }
 }

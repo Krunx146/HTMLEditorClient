@@ -64,10 +64,11 @@
             this.toolSaveAs = new System.Windows.Forms.ToolStripButton();
             this.toolStripSeparator3 = new System.Windows.Forms.ToolStripSeparator();
             this.toolGetFromWeb = new System.Windows.Forms.ToolStripButton();
+            this.toolGetFromServer = new System.Windows.Forms.ToolStripButton();
             this.toolSendToServer = new System.Windows.Forms.ToolStripButton();
             this.toolStripSeparator4 = new System.Windows.Forms.ToolStripSeparator();
             this.toolAbout = new System.Windows.Forms.ToolStripButton();
-            this.toolGetFromServer = new System.Windows.Forms.ToolStripButton();
+            this.toolWebPreview = new System.Windows.Forms.ToolStripButton();
             this.menuStripMain.SuspendLayout();
             this.contextMenuStrip1.SuspendLayout();
             this.toolStrip1.SuspendLayout();
@@ -186,7 +187,7 @@
             this.fontSizeToolStripMenuItem,
             this.menuMark});
             this.toolsToolStripMenuItem.Name = "toolsToolStripMenuItem";
-            this.toolsToolStripMenuItem.Size = new System.Drawing.Size(47, 20);
+            this.toolsToolStripMenuItem.Size = new System.Drawing.Size(48, 20);
             this.toolsToolStripMenuItem.Text = "Tools";
             // 
             // fontSizeToolStripMenuItem
@@ -315,6 +316,7 @@
             this.toolGetFromServer,
             this.toolSendToServer,
             this.toolStripSeparator4,
+            this.toolWebPreview,
             this.toolAbout});
             this.toolStrip1.Location = new System.Drawing.Point(0, 24);
             this.toolStrip1.Name = "toolStrip1";
@@ -371,6 +373,16 @@
             this.toolGetFromWeb.ToolTipText = "Get HTML from web";
             this.toolGetFromWeb.Click += new System.EventHandler(this.toolGetFromServer_Click);
             // 
+            // toolGetFromServer
+            // 
+            this.toolGetFromServer.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
+            this.toolGetFromServer.Image = ((System.Drawing.Image)(resources.GetObject("toolGetFromServer.Image")));
+            this.toolGetFromServer.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.toolGetFromServer.Name = "toolGetFromServer";
+            this.toolGetFromServer.Size = new System.Drawing.Size(28, 28);
+            this.toolGetFromServer.Text = "toolStripButton1";
+            this.toolGetFromServer.ToolTipText = "Get HTML from server";
+            // 
             // toolSendToServer
             // 
             this.toolSendToServer.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
@@ -396,15 +408,15 @@
             this.toolAbout.Text = "toolStripButton6";
             this.toolAbout.ToolTipText = "About";
             // 
-            // toolGetFromServer
+            // toolWebPreview
             // 
-            this.toolGetFromServer.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
-            this.toolGetFromServer.Image = ((System.Drawing.Image)(resources.GetObject("toolGetFromServer.Image")));
-            this.toolGetFromServer.ImageTransparentColor = System.Drawing.Color.Magenta;
-            this.toolGetFromServer.Name = "toolGetFromServer";
-            this.toolGetFromServer.Size = new System.Drawing.Size(28, 28);
-            this.toolGetFromServer.Text = "toolStripButton1";
-            this.toolGetFromServer.ToolTipText = "Get HTML from server";
+            this.toolWebPreview.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
+            this.toolWebPreview.Image = ((System.Drawing.Image)(resources.GetObject("toolWebPreview.Image")));
+            this.toolWebPreview.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.toolWebPreview.Name = "toolWebPreview";
+            this.toolWebPreview.Size = new System.Drawing.Size(28, 28);
+            this.toolWebPreview.Text = "toolStripButton1";
+            this.toolWebPreview.Click += new System.EventHandler(this.toolWebPreview_Click);
             // 
             // frmMain
             // 
@@ -472,6 +484,7 @@
         private System.Windows.Forms.ToolStripMenuItem contextCopy;
         private System.Windows.Forms.ToolStripMenuItem contextPaste;
         private System.Windows.Forms.ToolStripButton toolGetFromServer;
+        private System.Windows.Forms.ToolStripButton toolWebPreview;
     }
 }
 

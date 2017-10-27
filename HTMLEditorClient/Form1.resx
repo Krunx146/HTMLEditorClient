@@ -189,6 +189,15 @@
         RU5ErkJggg==
 </value>
   </data>
+  <data name="toolWebPreview.Image" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
+    <value>
+        iVBORw0KGgoAAAANSUhEUgAAABgAAAAYCAYAAADgdz34AAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8
+        YQUAAAAJcEhZcwAADsMAAA7DAcdvqGQAAACqSURBVEhLvY9BDgIxDMT6tD6S/xZNnEU9REDKLJbm4pXc
+        7PgX68d9ZI3HOlvngS7tB4729QP37EX+tA81SUPIOefbdVCTNISsovs6qEkaUvtQkzSErK4+mVCTNIR0
+        oiZpCFldczKhJmkI6URN0hCyumbfRfVtn1CTNIR0oiZpCFlds6+DmqQhtQ81SUPI6up9HdQkDal9qEka
+        UvtQkzSk9qEmabiEe3czxhMY+h3SG9O9NQAAAABJRU5ErkJggg==
+</value>
+  </data>
   <data name="toolAbout.Image" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
     <value>
         iVBORw0KGgoAAAANSUhEUgAAACAAAAAgCAYAAABzenr0AAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8
