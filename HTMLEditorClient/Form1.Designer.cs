@@ -67,8 +67,8 @@
             this.toolGetFromServer = new System.Windows.Forms.ToolStripButton();
             this.toolSendToServer = new System.Windows.Forms.ToolStripButton();
             this.toolStripSeparator4 = new System.Windows.Forms.ToolStripSeparator();
-            this.toolAbout = new System.Windows.Forms.ToolStripButton();
             this.toolWebPreview = new System.Windows.Forms.ToolStripButton();
+            this.toolAbout = new System.Windows.Forms.ToolStripButton();
             this.menuStripMain.SuspendLayout();
             this.contextMenuStrip1.SuspendLayout();
             this.toolStrip1.SuspendLayout();
@@ -398,16 +398,6 @@
             this.toolStripSeparator4.Name = "toolStripSeparator4";
             this.toolStripSeparator4.Size = new System.Drawing.Size(6, 31);
             // 
-            // toolAbout
-            // 
-            this.toolAbout.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
-            this.toolAbout.Image = ((System.Drawing.Image)(resources.GetObject("toolAbout.Image")));
-            this.toolAbout.ImageTransparentColor = System.Drawing.Color.Magenta;
-            this.toolAbout.Name = "toolAbout";
-            this.toolAbout.Size = new System.Drawing.Size(28, 28);
-            this.toolAbout.Text = "toolStripButton6";
-            this.toolAbout.ToolTipText = "About";
-            // 
             // toolWebPreview
             // 
             this.toolWebPreview.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
@@ -417,6 +407,16 @@
             this.toolWebPreview.Size = new System.Drawing.Size(28, 28);
             this.toolWebPreview.Text = "toolStripButton1";
             this.toolWebPreview.Click += new System.EventHandler(this.toolWebPreview_Click);
+            // 
+            // toolAbout
+            // 
+            this.toolAbout.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
+            this.toolAbout.Image = ((System.Drawing.Image)(resources.GetObject("toolAbout.Image")));
+            this.toolAbout.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.toolAbout.Name = "toolAbout";
+            this.toolAbout.Size = new System.Drawing.Size(28, 28);
+            this.toolAbout.Text = "toolStripButton6";
+            this.toolAbout.ToolTipText = "About";
             // 
             // frmMain
             // 
