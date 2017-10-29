@@ -256,6 +256,7 @@
             this.inputCode.Size = new System.Drawing.Size(1008, 652);
             this.inputCode.TabIndex = 2;
             this.inputCode.Text = "";
+            this.inputCode.SelectionChanged += new System.EventHandler(this.inputCode_SelectionChanged);
             this.inputCode.Click += new System.EventHandler(this.inputCode_Click);
             this.inputCode.TextChanged += new System.EventHandler(this.inputCode_TextChanged);
             this.inputCode.KeyDown += new System.Windows.Forms.KeyEventHandler(this.inputCode_KeyDown);

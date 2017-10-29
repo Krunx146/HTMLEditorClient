@@ -97,7 +97,7 @@ namespace HTMLEditorClient
         private void senseWord()
         {
             SenseWordList.Clear();
-            if(inputCode.Text.LastIndexOf('<') > 0)
+            if(inputCode.Text.LastIndexOf('<') > 0 && inputCode.Text[inputCode.SelectionStart - 1] != '>')
             {
                 int selectionEnd = inputCode.SelectionStart;
                 int selectionStart = inputCode.Text.LastIndexOf('<');
@@ -161,10 +161,12 @@ namespace HTMLEditorClient
                 executeMarkupOnSingleWord();
             }
 
-            if (inputCode.SelectionStart > 0 && inputCode.Text[inputCode.SelectionStart - 1] != '>') senseWord();
-            else senseList.Hide();
-
             this.Text = "HTML Editor - " + filePath + "*";
+        }
+        private void inputCode_SelectionChanged(object sender, EventArgs e)
+        {
+            if (inputCode.SelectionStart > 0) senseWord();
+            else senseList.Hide();
         }
         private void CheckAllText(string word, Color color, int startIndex)
         {
@@ -474,5 +476,6 @@ namespace HTMLEditorClient
             frmWebPreview tempForm = new frmWebPreview(inputCode.Text);
             tempForm.Show();
         }
+
     }
 }
