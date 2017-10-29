@@ -16,8 +16,10 @@ namespace HTMLEditorClient
         public string[] MarkupListHTML;
         public string[] MarkupListCSS;
         public bool MarkWords;
+        public bool SenseVisible;
         public string filePath;
         public string mainFile;
+        public ListBox senseList = new ListBox();
 
         public frmMain()
         {
@@ -25,8 +27,10 @@ namespace HTMLEditorClient
             ((ToolStripMenuItem)pTool10p).Checked = true;
             ((ToolStripMenuItem)menuMark).Checked = true;
             ((ToolStripMenuItem)menuSynchronise).Enabled = false;
+            this.Controls.Add(senseList);
             loadMarkup();
             MarkWords = true;
+            SenseVisible = false;
             filePath = null;
         }
         private void loadMarkup()
@@ -88,7 +92,31 @@ namespace HTMLEditorClient
                 }
             }
         }
+        private void senseWord()
+        {
 
+            if (inputCode.Text[inputCode.SelectionStart - 1] == '<')
+            {
+                senseList.Items.Clear();
+                Point senseLoc = inputCode.GetPositionFromCharIndex(inputCode.SelectionStart);
+                senseLoc.X += 32;
+                senseLoc.Y += 64;
+                senseList.Location = senseLoc;
+                senseList.BringToFront();
+                foreach (string s in MarkupListHTML)
+                {
+                    senseList.Items.Add(s);
+                }
+                senseList.SelectedIndex = 0;
+                SenseVisible = true;
+                senseList.Show();
+            }
+            else
+            {
+                senseList.Hide();
+                SenseVisible = false;
+            }
+        }
         private void inputCode_TextChanged(object sender, EventArgs e)
         {
             outputLineNumber.Text = "Line: " + (inputCode.GetLineFromCharIndex(inputCode.SelectionStart)+1) + " of " + inputCode.Lines.Count().ToString();
@@ -97,6 +125,9 @@ namespace HTMLEditorClient
             {
                 executeMarkupOnSingleWord();
             }
+
+            if(inputCode.SelectionStart > 0) senseWord();
+
             this.Text = "HTML Editor - " + filePath + "*";
         }
         private void CheckAllText(string word, Color color, int startIndex)
@@ -321,6 +352,30 @@ namespace HTMLEditorClient
                 if (e.KeyCode == Keys.C)
                 {
                     copyText();
+                    e.SuppressKeyPress = true;
+                }
+            }
+            if (SenseVisible)
+            {
+                if (e.KeyCode == Keys.Down && senseList.SelectedIndex < senseList.Items.Count)
+                {
+                    senseList.SelectedIndex++;
+                    e.SuppressKeyPress = true;
+                }
+                else if (e.KeyCode == Keys.Up && senseList.SelectedIndex > 0)
+                {
+                    senseList.SelectedIndex--;
+                    e.SuppressKeyPress = true;
+                }
+                else if (e.KeyCode == Keys.Enter)
+                {
+                    int selectPos = inputCode.SelectionStart - 1;
+                    inputCode.Text = inputCode.Text.Remove(inputCode.SelectionStart - 1, 1);
+                    inputCode.Text = inputCode.Text.Insert(selectPos, MarkupListHTML[senseList.SelectedIndex]);
+                    inputCode.SelectionStart = selectPos + MarkupListHTML[senseList.SelectedIndex].Length;
+                    senseList.Hide();
+                    SenseVisible = false;
+                    executeMarkupOnSingleWord();
                     e.SuppressKeyPress = true;
                 }
             }
