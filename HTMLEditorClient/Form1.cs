@@ -15,6 +15,8 @@ namespace HTMLEditorClient
     {
         public string[] MarkupListHTML;
         public string[] MarkupListCSS;
+        public List<string> SenseWordList = new List<string>();
+        public int SenseLength;
         public bool MarkWords;
         public bool SenseVisible;
         public string filePath;
@@ -94,7 +96,39 @@ namespace HTMLEditorClient
         }
         private void senseWord()
         {
-
+            SenseWordList.Clear();
+            if(inputCode.Text.LastIndexOf('<') > 0)
+            {
+                int selectionEnd = inputCode.SelectionStart;
+                int selectionStart = inputCode.Text.LastIndexOf('<');
+                if (selectionEnd - selectionStart < 1) return;
+                string word = inputCode.Text.Substring(selectionStart, selectionEnd - selectionStart);
+                SenseLength = selectionEnd - selectionStart;
+                foreach (string s in MarkupListHTML)
+                {
+                    if (s.Contains(word)) SenseWordList.Add(s);
+                }
+                if (!SenseWordList.Any())
+                {
+                    senseList.Hide();
+                    SenseVisible = false;
+                    return;
+                }
+                senseList.Items.Clear();
+                Point senseLoc = inputCode.GetPositionFromCharIndex(inputCode.SelectionStart);
+                senseLoc.X += 32;
+                senseLoc.Y += 64;
+                senseList.Location = senseLoc;
+                senseList.BringToFront();
+                foreach (string s in SenseWordList)
+                {
+                    senseList.Items.Add(s);
+                }
+                senseList.SelectedIndex = 0;
+                SenseVisible = true;
+                senseList.Show();
+            }
+            /*
             if (inputCode.Text[inputCode.SelectionStart - 1] == '<')
             {
                 senseList.Items.Clear();
@@ -103,7 +137,7 @@ namespace HTMLEditorClient
                 senseLoc.Y += 64;
                 senseList.Location = senseLoc;
                 senseList.BringToFront();
-                foreach (string s in MarkupListHTML)
+                foreach (string s in SenseWordList)
                 {
                     senseList.Items.Add(s);
                 }
@@ -111,6 +145,7 @@ namespace HTMLEditorClient
                 SenseVisible = true;
                 senseList.Show();
             }
+            */
             else
             {
                 senseList.Hide();
@@ -126,7 +161,8 @@ namespace HTMLEditorClient
                 executeMarkupOnSingleWord();
             }
 
-            if(inputCode.SelectionStart > 0) senseWord();
+            if (inputCode.SelectionStart > 0 && inputCode.Text[inputCode.SelectionStart - 1] != '>') senseWord();
+            else senseList.Hide();
 
             this.Text = "HTML Editor - " + filePath + "*";
         }
@@ -357,7 +393,7 @@ namespace HTMLEditorClient
             }
             if (SenseVisible)
             {
-                if (e.KeyCode == Keys.Down && senseList.SelectedIndex < senseList.Items.Count)
+                if (e.KeyCode == Keys.Down && senseList.SelectedIndex < senseList.Items.Count-1)
                 {
                     senseList.SelectedIndex++;
                     e.SuppressKeyPress = true;
@@ -369,10 +405,10 @@ namespace HTMLEditorClient
                 }
                 else if (e.KeyCode == Keys.Enter)
                 {
-                    int selectPos = inputCode.SelectionStart - 1;
-                    inputCode.Text = inputCode.Text.Remove(inputCode.SelectionStart - 1, 1);
-                    inputCode.Text = inputCode.Text.Insert(selectPos, MarkupListHTML[senseList.SelectedIndex]);
-                    inputCode.SelectionStart = selectPos + MarkupListHTML[senseList.SelectedIndex].Length;
+                    int selectPos = inputCode.SelectionStart - SenseLength;
+                    inputCode.Text = inputCode.Text.Remove(selectPos, SenseLength);
+                    inputCode.Text = inputCode.Text.Insert(selectPos, SenseWordList[senseList.SelectedIndex]);
+                    inputCode.SelectionStart = selectPos + SenseWordList[senseList.SelectedIndex].Length;
                     senseList.Hide();
                     SenseVisible = false;
                     executeMarkupOnSingleWord();
