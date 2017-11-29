@@ -160,7 +160,6 @@ namespace HTMLEditorClient
             {
                 executeMarkupOnSingleWord();
             }
-
             this.Text = "HTML Editor - " + filePath + "*";
         }
         private void inputCode_SelectionChanged(object sender, EventArgs e)
@@ -477,5 +476,11 @@ namespace HTMLEditorClient
             tempForm.Show();
         }
 
+        private void toolGetFromServer_Click_1(object sender, EventArgs e)
+        {
+            frmGetServerData tempForm = new frmGetServerData();
+            tempForm.parent = this;
+            tempForm.Show();
+        }
     }
 }
