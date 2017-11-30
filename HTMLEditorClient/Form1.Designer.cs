@@ -133,6 +133,7 @@
             this.menuGetFromServer.Name = "menuGetFromServer";
             this.menuGetFromServer.Size = new System.Drawing.Size(158, 22);
             this.menuGetFromServer.Text = "Get From Server";
+            this.menuGetFromServer.Click += new System.EventHandler(this.menuGetFromServer_Click);
             // 
             // menuSynchronise
             // 
@@ -187,7 +188,7 @@
             this.fontSizeToolStripMenuItem,
             this.menuMark});
             this.toolsToolStripMenuItem.Name = "toolsToolStripMenuItem";
-            this.toolsToolStripMenuItem.Size = new System.Drawing.Size(48, 20);
+            this.toolsToolStripMenuItem.Size = new System.Drawing.Size(47, 20);
             this.toolsToolStripMenuItem.Text = "Tools";
             // 
             // fontSizeToolStripMenuItem
@@ -394,6 +395,7 @@
             this.toolSendToServer.Size = new System.Drawing.Size(28, 28);
             this.toolSendToServer.Text = "toolStripButton5";
             this.toolSendToServer.ToolTipText = "Synchronise with server";
+            this.toolSendToServer.Click += new System.EventHandler(this.toolSendToServer_Click);
             // 
             // toolStripSeparator4
             // 

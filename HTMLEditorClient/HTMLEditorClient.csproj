@@ -67,6 +67,12 @@
     <Compile Include="frmGetServerData.Designer.cs">
       <DependentUpon>frmGetServerData.cs</DependentUpon>
     </Compile>
+    <Compile Include="frmSendToServer.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frmSendToServer.Designer.cs">
+      <DependentUpon>frmSendToServer.cs</DependentUpon>
+    </Compile>
     <Compile Include="frmWebPreview.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -83,6 +89,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="frmGetServerData.resx">
       <DependentUpon>frmGetServerData.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="frmSendToServer.resx">
+      <DependentUpon>frmSendToServer.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="frmWebPreview.resx">
       <DependentUpon>frmWebPreview.cs</DependentUpon>

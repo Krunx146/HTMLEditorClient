@@ -482,5 +482,19 @@ namespace HTMLEditorClient
             tempForm.parent = this;
             tempForm.Show();
         }
+
+        private void menuGetFromServer_Click(object sender, EventArgs e)
+        {
+            frmGetServerData tempForm = new frmGetServerData();
+            tempForm.parent = this;
+            tempForm.Show();
+        }
+
+        private void toolSendToServer_Click(object sender, EventArgs e)
+        {
+            frmSendToServer tempForm = new frmSendToServer();
+            tempForm.parent = this;
+            tempForm.Show();
+        }
     }
 }
