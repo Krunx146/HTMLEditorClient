@@ -463,6 +463,14 @@ namespace HTMLEditorClient
                 executeMarkup();
             }
         }
+        public string GetText()
+        {
+            return inputCode.Text;
+        }
+        public int GetTextLength()
+        {
+            return inputCode.Text.Length;
+        }
         private void toolGetFromServer_Click(object sender, EventArgs e)
         {
             frmGetHTML tempForm = new frmGetHTML();

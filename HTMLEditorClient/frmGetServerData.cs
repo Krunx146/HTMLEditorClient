@@ -52,7 +52,7 @@ namespace HTMLEditorClient
         {
             try
             {
-                Connect(inputHostname.Text, int.Parse(inputPort.Text), "SIMPLE TIME");
+                Connect(inputHostname.Text, int.Parse(inputPort.Text), "GHT");
             }
             catch
             {
